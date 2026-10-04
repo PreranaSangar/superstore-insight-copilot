@@ -3,5 +3,5 @@ matplotlib
 streamlit
 langgraph
 langchain
-langchain-ollama
+langchain-groq
 python-dotenv

@@ -1,4 +1,7 @@
-from langchain_ollama import ChatOllama
+import os
+from dotenv import load_dotenv
+
+from langchain_groq import ChatGroq
 from langgraph.graph import StateGraph, START, END
 
 from state import AgentState
@@ -8,16 +11,21 @@ from tools import (
     chart_tool
 )
 
+# =========================================================
+# Load Environment Variables
+# =========================================================
+
+load_dotenv()
+
 
 # =========================================================
-# Initialize Mistral
+# Initialize Cloud LLM
 # =========================================================
 
-llm = ChatOllama(
-    model="mistral",
+llm = ChatGroq(
+    model="openai/gpt-oss-20b",
     temperature=0,
-    num_predict=200,
-    timeout=60
+    max_tokens=200
 )
 
 
@@ -29,7 +37,7 @@ def planner_node(state: AgentState):
 
     user_query = state["user_query"]
 
-    print("\n[PLANNER] Sending question to Mistral...")
+    print("\n[PLANNER] Sending question to cloud LLM...")
 
     conversation_history = state.get(
         "conversation_history",
@@ -57,7 +65,7 @@ Important:
 
     response = llm.invoke(prompt)
 
-    print("[PLANNER] Mistral response received.")
+    print("[PLANNER] Cloud LLM response received.")
 
     return {
         "plan": response.content
