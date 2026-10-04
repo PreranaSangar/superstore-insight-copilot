@@ -7,6 +7,9 @@ Superstore Insight Copilot allows users to ask natural-language questions about 
 The project demonstrates a **reasoning and tool-using agent architecture** using LangGraph.
 
 ---
+## 🚀 Live Demo
+
+[**Launch Superstore Insight Copilot**](https://superstore-insight-copilot-eplkyukkqm4ssgnhjfcppj.streamlit.app/)
 
 ## 🚀 Features
 
